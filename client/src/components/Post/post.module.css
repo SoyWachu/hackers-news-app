@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 2em 1rem 2em;
+  margin: 0 3em 0 3em;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: #fafafa;
+}
+
+.leftContainer {
+  display: flex;
+  justify-content: center;
+  color: #333;
+}
+
+.leftContainer p {
+  margin: 0;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 10%;
+}
+
+.rightContainer p {
+  margin: 0;
+  color: #333;
+  font-size: 17px;
+}
+
+.author {
+  padding-left: 20px;
+  color: #999;
+}
+.icon {
+  height: auto;
+  width: 20px;
+}
+.icon:hover {
+  cursor: pointer;
+}
