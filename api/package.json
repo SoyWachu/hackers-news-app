@@ -28,6 +28,7 @@
     "@nestjs/mongoose": "^9.0.3",
     "@nestjs/platform-express": "^8.0.0",
     "axios": "^0.26.1",
+    "helmet": "^5.0.2",
     "joi": "^17.6.0",
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.0",
