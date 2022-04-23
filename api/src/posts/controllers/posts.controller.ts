@@ -14,6 +14,4 @@ export class PostsController {
   deletePost(@Param('id') postId: string) {
     return this.postService.deleteOne(postId);
   }
-
-  //notfoundexception
 }

@@ -1,4 +1,3 @@
-import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
 import { PostsController } from './controllers/posts.controller';
