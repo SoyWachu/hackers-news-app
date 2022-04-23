@@ -10,9 +10,11 @@ import { DatabaseModule } from './database/database.module';
 import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Post, PostSchema } from './posts/entities/posts.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     MongooseModule.forFeature([
       {
         name: Post.name,
