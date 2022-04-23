@@ -1,51 +1,34 @@
-import React from "react";
+import { useEffect } from "react";
 import Post from "../Post/Post";
 import styles from "./postlist.module.css";
-
-const post = [
-  {
-    title:
-      "Thatcher killed the UK’s superfast broadband before it even existed",
-    story: "como estan",
-    author: "mandxxxrake",
-    created_at: "2015",
-  },
-  {
-    title: "Announcing a16z crypto research",
-    story: "cozxzxzmo estan",
-    author: "mandracccke",
-    created_at: "2012",
-  },
-  {
-    title: "Which Node.js OAuth Library Does Your App Need?",
-    story: "coasdasdddmo estan",
-    author: "manvvvdrake",
-    created_at: "2015",
-  },
-  {
-    title: "Announcing a16z crypto research",
-    story: "coasdasdmo estan",
-    author: "mandzzzrake",
-    created_at: "2016",
-  },
-  {
-    title: "TSMC head says drive to onshore chip supply chain is 'unrealistic'",
-    story: "como esasdasdtan",
-    author: "mandrqqqake",
-    created_at: "2018",
-  },
-];
+import { useSelector } from "react-redux";
+import { PostState } from "../../redux/reducer/postReducer";
+import { fetchPosts } from "../../redux/actions/actions";
+import { store } from "../../redux/store";
 
 function PostList() {
+  const dispatchStore = store.dispatch;
+
+  const posts = useSelector<PostState, PostState["posts"]>(
+    (state) => state.posts
+  );
+
+  useEffect(() => {
+    dispatchStore(fetchPosts() as any);
+  }, [dispatchStore]);
+
   return (
     <div className={styles.container}>
-      {post.map((item) => {
+      {posts?.map((item) => {
         return (
           <Post
+            _id={item._id}
             title={item.title}
-            story={item.story}
+            story_title={item.story_title}
             author={item.author}
-            date={item.created_at}
+            created_at={item.created_at}
+            story_url={item.story_url}
+            key={item._id}
           />
         );
       })}
