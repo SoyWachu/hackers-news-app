@@ -7,10 +7,20 @@ import config from './config';
 import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
 import { DatabaseModule } from './database/database.module';
+import { HttpModule } from '@nestjs/axios';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Post, PostSchema } from './posts/entities/posts.entity';
 
 @Module({
   imports: [
+    MongooseModule.forFeature([
+      {
+        name: Post.name,
+        schema: PostSchema,
+      },
+    ]),
     PostsModule,
+    HttpModule,
     DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
