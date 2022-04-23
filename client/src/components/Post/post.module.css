@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 3.5em;
   font-size: 17px;
   border-bottom: 1px solid #ccc;
-  padding: 1rem 2em 1rem 2em;
   margin: 0 3em 0 3em;
 }
 
@@ -13,10 +13,29 @@
   background-color: #fafafa;
 }
 
-.leftContainer {
+.link {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.leftContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   color: #333;
+}
+
+.innerLeftContainer {
+  display: flex;
 }
 
 .leftContainer p {
@@ -26,8 +45,9 @@
 .rightContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 10%;
+  justify-content: center;
+  width: 5%;
+  margin-left: 3em;
 }
 
 .rightContainer p {
@@ -46,4 +66,8 @@
 }
 .icon:hover {
   cursor: pointer;
+}
+
+.title {
+  padding-left: 1.2em;
 }
