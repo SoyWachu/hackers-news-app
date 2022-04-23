@@ -15,6 +15,9 @@ export class Post extends Document {
 
   @Prop()
   created_at: string;
+
+  @Prop()
+  story_url: string;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);
