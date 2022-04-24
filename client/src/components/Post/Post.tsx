@@ -22,7 +22,7 @@ const Post = ({
 
   return (
     <div className={styles.container}>
-      {!isLoading ? (
+      {isLoading ? (
         <p>Cargando...</p>
       ) : (
         <>
