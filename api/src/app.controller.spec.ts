@@ -1,22 +1,36 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from './../src/app.module';
 
-describe('AppController', () => {
-  let appController: AppController;
+describe('GET REQUEST', () => {
+  let app: INestApplication;
 
   beforeEach(async () => {
-    const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    app = moduleFixture.createNestApplication();
+    await app.init();
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
+  it('GET /POSTS', () => {
+    return request(app.getHttpServer())
+      .get('/posts')
+      .expect(200)
+      .expect('Content-Type', /json/);
+  });
+
+  it('GET /POSTS EXPECTING ERROR', async () => {
+    request(app.getHttpServer())
+      .get(`/post`)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        if (err) return err;
+        expect(res.body).toMatchObject({ posts: [] });
+      });
   });
 });

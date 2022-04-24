@@ -3,7 +3,7 @@ import { PostsService } from '../services/posts.service';
 
 @Controller('posts')
 export class PostsController {
-  constructor(private postService: PostsService) {}
+  constructor(private readonly postService: PostsService) {}
 
   @Get()
   getPosts() {
