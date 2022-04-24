@@ -1,4 +1,4 @@
-export default interface singlePost {
+export interface singlePost {
   _id: string;
   title: string;
   story_title: string;

@@ -1,40 +1,36 @@
-import { Action } from "../../utils/types/postTypes";
-import {
-  FETCH_POSTS_REQUEST,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE,
-  DELETE_ONE_POST,
-} from "../actionTypes/actionTypes";
+import { ACTION_TYPES, Action } from "../actionTypes/actionTypes";
 
 export interface PostState {
   posts: any[];
+  loading: boolean;
+  error: string;
 }
 
 const initialState = {
   posts: [],
   loading: false,
   error: "",
-};
+} as PostState;
 
 export const postReducer = (
   state: PostState = initialState,
   action: Action
 ) => {
   switch (action.type) {
-    case FETCH_POSTS_REQUEST: {
+    case ACTION_TYPES.FETCH_POSTS_REQUEST: {
       return {
         ...state,
         loading: true,
       };
     }
-    case FETCH_POSTS_SUCCESS: {
+    case ACTION_TYPES.FETCH_POSTS_SUCCESS: {
       return {
         loading: false,
         posts: action.payload,
         error: "",
       };
     }
-    case FETCH_POSTS_FAILURE: {
+    case ACTION_TYPES.FETCH_POSTS_FAILURE: {
       return {
         loading: false,
         posts: [],
@@ -42,7 +38,7 @@ export const postReducer = (
       };
     }
 
-    case DELETE_ONE_POST: {
+    case ACTION_TYPES.DELETE_ONE_POST: {
       return {
         ...state,
         posts: state.posts.filter((item) => item._id !== action.payload),
