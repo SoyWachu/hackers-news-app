@@ -1,16 +1,24 @@
 import React from "react";
-import singlePost from "../../utils/interfaces/postInterface";
+import { singlePost } from "../../utils/interfaces/postInterface";
 import styles from "./post.module.css";
 import { deletePost } from "../../redux/actions/actions";
 import { store } from "../../redux/store";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { PostState } from "../../redux/reducer/postReducer";
 
-function Post(props: singlePost) {
+const Post = ({
+  created_at,
+  story_url,
+  title,
+  story_title,
+  author,
+  _id,
+}: singlePost) => {
   const dispatchStore = store.dispatch;
-  const isLoading = useSelector((state) => state);
+  const isLoading = useSelector((state: PostState) => state.loading);
 
-  const date = moment(props.created_at).format("dddd");
+  const date = moment(created_at).format("dddd");
 
   return (
     <div className={styles.container}>
@@ -21,15 +29,15 @@ function Post(props: singlePost) {
           <a
             className={styles.link}
             target="_blank"
-            href={props.story_url}
+            href={story_url}
             rel="noreferrer"
           >
             <div className={styles.leftContainer}>
               <div className={styles.innerLeftContainer}>
                 <p className={styles.title}>
-                  {props.title === null ? props.story_title : props.title}.
+                  {title === null ? story_title : title}.
                 </p>
-                <p className={styles.author}>- {props.author} -</p>
+                <p className={styles.author}>- {author} -</p>
               </div>
               <div>
                 <p>{date}</p>
@@ -39,7 +47,7 @@ function Post(props: singlePost) {
           <div className={styles.rightContainer}>
             <div>
               <svg
-                onClick={() => dispatchStore(deletePost(props._id) as any)}
+                onClick={() => dispatchStore(deletePost(_id) as any)}
                 xmlns="http://www.w3.org/2000/svg"
                 className={styles.icon}
                 fill="none"
@@ -59,6 +67,6 @@ function Post(props: singlePost) {
       )}
     </div>
   );
-}
+};
 
 export default Post;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Post from "../Post/Post";
 import styles from "./postlist.module.css";
 import { useSelector } from "react-redux";
